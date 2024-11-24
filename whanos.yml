@@ -1,0 +1,16 @@
+jenkins:
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+          - name: Admin
+            permissions:
+              - Overall/Administer
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: admin
+          password: ${USER_ADMIN_PASSWORD}
+          name: Admin
