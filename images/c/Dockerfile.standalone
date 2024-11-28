@@ -1,0 +1,26 @@
+FROM gcc:13.2 as builder
+
+SHELL ["/bin/bash", "-c"]
+
+WORKDIR /app
+
+COPY . /app
+
+RUN make
+
+RUN rm -rf Makefile /app
+
+
+FROM alpine:latest
+
+RUN apk add --no-cache bash
+
+SHELL ["/bin/bash", "-c"]
+
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+COPY --from=builder /app /app
+
+CMD ["./compiled-app"]
