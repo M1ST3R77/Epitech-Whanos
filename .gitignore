@@ -1,2 +1,6 @@
 .vscode
 .idea
+
+# Jenkins tests files
+jenkins/docker-compose.yml
+jenkins/Dockerfile
