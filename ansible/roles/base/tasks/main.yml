@@ -1,0 +1,20 @@
+- name: Update
+  apt:
+    update_cache: yes
+
+- name: Upgrade
+  apt:
+    upgrade: yes
+
+- name: Install packages
+  apt:
+    name:
+      - git
+      - curl
+      - bash
+    state: latest
+
+- name: Set bash
+  user:
+    name: root
+    shell: /bin/bash
