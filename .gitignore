@@ -2,5 +2,5 @@
 .idea
 
 # Jenkins tests files
-jenkins/docker-compose.yml
-jenkins/Dockerfile
+docker-compose.yml
+Dockerfile

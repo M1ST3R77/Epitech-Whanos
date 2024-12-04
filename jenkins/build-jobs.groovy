@@ -1,33 +1,124 @@
 def languages = [
-    "haskell": "whanos-haskell",
+    "c": "whanos-c",
     "python": "whanos-python",
     "java": "whanos-java",
-    "ruby": "whanos-ruby",
-    "nodejs": "whanos-nodejs"
+    "javascript": "whanos-javascript",
+    "befunge": "whanos-befunge"
 ]
 
-pipeline {
-    agent any
-    stages {
-        stage('Whanos base images build jobs') {
-            steps {
-                script {
-                    languages.each { language, imageName ->
-                        def folderPath = "/Whanos base images"
-                        def jobName = imageName
-                        def jobExists = Jenkins.instance.getItem(jobName)
+folder('Whanos base images') {}
+folder('Projects') {}
 
-                        if (!jobExists) {
-                            def job = Jenkins.instance.createProject(
-                                hudson.model.FreeStyleProject, jobName, folderPath)
-                            def scriptPath = '/scripts/build.sh'
-                            def process = ["bash", scriptPath].execute()
-                            process.waitFor()
-                            echo "Created job: $jobName"
-                        } else {
-                            echo "Job already exists: $jobName"
-                        }
-                    }
+freeStyleJob(languages["c"]) {
+    steps {
+        script {
+            def folderPath = "/jenkins/Whanos base images"
+            def jobName = languages["c"]
+            def jobExists = Jenkins.instance.getItem(jobName)
+
+            if (!jobExists) {
+                def scriptPath = '/scripts/build.sh'
+                def process = ["bash", scriptPath].execute()
+                process.waitFor()
+            }
+        }
+    }
+}
+
+freeStyleJob(languages["python"]) {
+    steps {
+        script {
+            def folderPath = "/jenkins/Whanos base images"
+            def jobName = languages["python"]
+            def jobExists = Jenkins.instance.getItem(jobName)
+
+            if (!jobExists) {
+                def scriptPath = '/scripts/build.sh'
+                def process = ["bash", scriptPath].execute()
+                process.waitFor()
+            }
+        }
+    }
+}
+
+freeStyleJob(languages["java"]) {
+    steps {
+        script {
+            def folderPath = "/jenkins/Whanos base images"
+            def jobName = languages["java"]
+            def jobExists = Jenkins.instance.getItem(jobName)
+
+            if (!jobExists) {
+                def scriptPath = '/scripts/build.sh'
+                def process = ["bash", scriptPath].execute()
+                process.waitFor()
+            }
+        }
+    }
+}
+
+freeStyleJob(languages["javascript"]) {
+    steps {
+        script {
+            def folderPath = "/jenkins/Whanos base images"
+            def jobName = languages["javascript"]
+            def jobExists = Jenkins.instance.getItem(jobName)
+
+            if (!jobExists) {
+                def scriptPath = '/scripts/build.sh'
+                def process = ["bash", scriptPath].execute()
+                process.waitFor()
+            }
+        }
+    }
+}
+
+freeStyleJob(languages["befunge"]) {
+    steps {
+        script {
+            def folderPath = "/jenkins/Whanos base images"
+            def jobName = languages["befunge"]
+            def jobExists = Jenkins.instance.getItem(jobName)
+
+            if (!jobExists) {
+                def scriptPath = '/scripts/build.sh'
+                def process = ["bash", scriptPath].execute()
+                process.waitFor()
+            }
+        }
+    }
+}
+
+// freeStyleJob('Whanos base images') {
+//     steps {
+//         script {
+//             languages.each { language, imageName ->
+//                 def folderPath = "/jenkins/Whanos base images"
+//                 def jobName = imageName
+//                 def jobExists = Jenkins.instance.getItem(jobName)
+//
+//                 if (!jobExists) {
+//                     def scriptPath = '/scripts/build.sh'
+//                     def process = ["bash", scriptPath].execute()
+//                     process.waitFor()
+//                 }
+//             }
+//         }
+//     }
+// }
+
+freeStyleJob('Build all base images') {
+    steps {
+        script {
+            languages.each { language, imageName ->
+                def folderPath = "/jenkins/Whanos base images"
+                def jobName = imageName
+                def jobExists = Jenkins.instance.getItem(jobName)
+
+                if (!jobExists) {
+                    def scriptPath = '/scripts/build.sh'
+                    def process = ["bash", scriptPath].execute()
+                    process.waitFor()
                 }
             }
         }
