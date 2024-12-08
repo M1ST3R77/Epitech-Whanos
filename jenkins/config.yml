@@ -6,6 +6,7 @@ jenkins:
           - name: Admin
             permissions:
               - Overall/Administer
+              - Overall/Read
             entries:
               - user: admin
 
@@ -16,3 +17,6 @@ jenkins:
         - id: admin
           password: ${USER_ADMIN_PASSWORD}
           name: Admin
+
+jobs:
+  - file: "/var/jenkins_home/job_dsl.groovy"
