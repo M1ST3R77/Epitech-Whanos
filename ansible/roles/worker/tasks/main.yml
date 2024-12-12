@@ -1,3 +1,9 @@
-- name: 'Install k3s for worker'
-  shell: |
-    'curl -sfL https://get.k3s.io | K3S_URL=https://{{ master_ip }}:6443 K3S_TOKEN={{ k3s_token }} sh -'
+- name: Load join command from file
+  include_vars:
+    file: "./ansible/group_vars/joiner.yml"
+
+- name: Join the cluster
+  shell: "{{ join_command }} >> node_joined.txt"
+  args:
+    chdir: $HOME
+    creates: node_joined.txt
