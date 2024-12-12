@@ -1,0 +1,18 @@
+namespace: app
+
+deployment:
+  replicas: 1
+  resources:
+    requests:
+      memory: "64Mi"
+      cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  ports: []
+
+service:
+  restartPolicy: Always
+
+image:
+  pullPolicy: IfNotPresent
