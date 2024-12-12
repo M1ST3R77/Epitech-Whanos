@@ -1,7 +1,8 @@
 #!/bin/sh
 
-# Create "deployment" namespace
+# Create "deployment" and "app" namespace
 kubectl create namespace deployment
+kubectl create namespace app
 
 # Init repositories
 helm repo add jenkins https://charts.jenkins.io
