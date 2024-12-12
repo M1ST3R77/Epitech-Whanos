@@ -1,4 +1,4 @@
-namespace: whanos
+namespace: app
 
 deployment:
   replicas: 1
@@ -9,11 +9,10 @@ deployment:
       limits:
         memory: "128Mi"
         cpu: "500m"
-  ports:
-    - 6001
+  ports: []
 
 service:
   restartPolicy: Always
 
 image:
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
