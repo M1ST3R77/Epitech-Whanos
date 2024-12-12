@@ -1,9 +1,6 @@
 - name: Load join command from file
   include_vars:
-    file: "./ansible/group_vars/joiner.yml"
+    file: "./group_vars/joiner.yml"
 
 - name: Join the cluster
-  shell: "{{ join_command }} >> node_joined.txt"
-  args:
-    chdir: $HOME
-    creates: node_joined.txt
+  shell: "{{ join_cmd }}"

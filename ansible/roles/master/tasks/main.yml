@@ -21,14 +21,18 @@
 
 - name: Get join command
   shell: kubeadm token create --print-join-command
-  register: join_command_raw
+  register: join_cmd_raw
 
-- name: Save join command to joiner file
-  delegate_to: localhost
+- name: Save join command to a temporary file on master
   copy:
-    dest: "./ansible/group_vars/joiner.yml"
-    content: |
-      join_command: "{{ join_command_raw.stdout }}"
+    dest: "/tmp/join_cmd.txt"
+    content: "join_cmd: {{ join_cmd_raw.stdout }}"
+
+- name: Fetch join command to local group_vars
+  fetch:
+    src: "/tmp/join_cmd.txt"
+    dest: "./group_vars/joiner.yml"
+    flat: yes
 
 - name: Copy scripts folder into master
   copy:

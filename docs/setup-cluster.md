@@ -29,10 +29,7 @@ sudo apt install ansible -y
 
 ## Step 3: Connection configuration for Ansible
 
-Create the empty file joiner.yml in the group_vars folder.
-
 Create the file all.yml in the group_vars folder.
-
 
 Typical structure of the group_vars/all.yml file :
 
