@@ -1,2 +1,6 @@
 .vscode
 .idea
+
+all.yml
+joiner.yml
+id_rsa

@@ -1,0 +1,6 @@
+- name: Load join command from file
+  include_vars:
+    file: "./group_vars/joiner.yml"
+
+- name: Join the cluster
+  shell: "{{ join_cmd }}"
