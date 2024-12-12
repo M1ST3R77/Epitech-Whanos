@@ -1,15 +1,17 @@
 #!/bin/bash
 
 LANGUAGE=$1
+NAME=$2
 
-image_name=whanos-$LANGUAGE
+IMAGE_NAME=whanos-$NAME-$LANGUAGE
+IMAGE_PATH=docker-registry.deployment:5000/"$IMAGE_NAME"
 
 if [[ -f Dockerfile ]]; then
-        docker build . -t "$image_name"
+        docker build . -t "$IMAGE_NAME"
 else
-        docker build . -f images/"${$LANGUAGE}"/Dockerfile.standalone -t "$image_name"
+        docker build . -f images/"$LANGUAGE"/Dockerfile.standalone -t "$IMAGE_NAME"
 fi
 
-if ! docker push "$image_name"; then
+if ! docker push "$IMAGE_PATH"; then
         exit 1
 fi
