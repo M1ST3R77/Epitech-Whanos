@@ -19,10 +19,15 @@ spec:
         - name: {{ .Values.name }}
           image: {{ .Values.dockerImage }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{ if .Values.deployment.ports }}
           ports:
-          {{- range .Values.deployment.ports }}
+            {{ range .Values.deployment.ports }}
             - containerPort: {{ . }}
               protocol: TCP
-          {{- end }}
+            {{ end }}
+          {{ end }}
+          {{ if .Values.deployment.resources }}
+          resources: {{ .Values.deployment.resources }}
+          {{ end }}
       restartPolicy: {{ .Values.service.restartPolicy }}
       

@@ -5,11 +5,13 @@ metadata:
 spec:
   selector:
     app: {{ .Values.name }}
+  {{ if .Values.deployment.ports }}
   ports:
-    {{- range .Values.deployment.ports }}
+    {{ range .Values.deployment.ports }}
     - protocol: TCP
       port: {{ . }}
       targetPort: {{ . }}
-    {{- end }}
+    {{ end }}
+  {{ end }}
   type: NodePort
   
