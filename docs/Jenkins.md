@@ -8,7 +8,7 @@ Jenkins board allows us to launch asked commands
 
 ![Jenkins Board](JenkinsBoard.png)
 
-`Build all base images` to build all languages images\
+`Build all base images` to build all languages base images\
 `link-project` to link a project to Whanos
 
 ### Build all base images
@@ -27,5 +27,7 @@ To link a project to Whanos
 - click on `build with parameters` on the left of the screen
 - specify the GitHub repository name and the project name displayed
 - click on green `Build` button
+
+It will check for changes in your repository
 
 ![Jenkins link project](JenkinsLP.png)
