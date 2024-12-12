@@ -23,5 +23,5 @@ helm install twuni/docker-registry --set namespace=deployment
 
 Script to setup docker image
 ```shell
-helm upgrade --set dockerImage=docker-registry.deployment:5000/whanos-<image> --set name=whanos-<image> -f ./whanos.yml whanos-<image> /scripts/deployment/chart
+helm upgrade --set dockerImage=docker-registry.deployment:5000/whanos-<name>-<language> --set name=whanos-<name>-<language> -f ./whanos.yml whanos-<name>-<language> /scripts/deployment/chart
 ```
