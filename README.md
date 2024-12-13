@@ -1,6 +1,16 @@
 # Guide to setting up a Kubernetes cluster with Ansible
 
-## Step 1: Install Ansible
+## Explanation Guide
+
+Checkout different documentations :
+- [Ansible](/docs/ansible.md)
+- [Docker](/docs/docker.md)
+- [Jenkins](/docs/jenkins.md)
+- [Kubernetes](/docs/kubernetes.md)
+
+## Installation
+
+### Step 1: Install Ansible
 Let's start by installing ansible on your machine.
 
 
@@ -9,7 +19,7 @@ sudo apt update
 sudo apt install ansible -y
 ```
 
-## Step 2: Start your 2 virtual machines
+### Step 2: Start your 2 virtual machines
 
 1. **Create two virtual machines:**
    - A master machine
@@ -27,7 +37,7 @@ sudo apt install ansible -y
         ssh-copy-id -i id_rsa.pub <machine_user>@<machine_ip>
         ```
 
-## Step 3: Connection configuration for Ansible
+### Step 3: Connection configuration for Ansible
 
 Create the file all.yml in the group_vars folder.
 
@@ -42,7 +52,7 @@ private_key_path_master: ./id_rsa
 private_key_path_worker: ./id_rsa
 ```
 
-## Step 4: Launching ansible
+### Step 4: Launching ansible
 Run from project root the following command:
 
 ```bash
@@ -54,7 +64,7 @@ This command will install everything needed to create a Kubernetes cluster with 
    - A master node
    - A worker node
 
-## Step 5: Check installation
+### Step 5: Check installation
 
 1. **Connect to the master machine via SSH :**
 
@@ -68,4 +78,4 @@ This command will install everything needed to create a Kubernetes cluster with 
     kubectl get nodes
     ```
 
-The guide is now complete and you have successfully set up a kubernetes cluster.
+The guide is now complete, and you have successfully set up a kubernetes cluster.
