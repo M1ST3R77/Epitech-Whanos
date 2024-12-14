@@ -4,3 +4,7 @@
 all.yml
 joiner.yml
 id_rsa
+
+# Jenkins tests files
+docker-compose.yml
+Dockerfile
