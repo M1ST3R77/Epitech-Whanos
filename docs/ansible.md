@@ -96,7 +96,7 @@ The **master** role is intended for machines that will be master nodes in the Ku
     - **Save join command to a temporary file on master** : Save the `join` command to a local file.
     - **Fetch join command to local group_vars** : Create a file in the `group_vars` folder to store the `join` command.
 
-- **Configuration et déployement des scripts** :
+- **Scripts configuration and deployment** :
     - **Copy scripts folder into master** : Copy the necessary scripts to the master machine.
 
 
@@ -106,6 +106,6 @@ The **master** role is intended for machines that will be master nodes in the Ku
 The **worker** role is intended for machines that will be execution nodes in the Kubernetes cluster. These nodes host the pods running the applications.
 
 #### Tasks :
-- **Liaison de la node worker au cluster** :
+- **Linking the node worker to the cluster** :
     - **Load join command from file** : Include the `join` command in ansible's variables.
     - **Join the cluster** : Execute the `join` command on the worker node to add it to the Kubernetes cluster.
