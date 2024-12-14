@@ -39,7 +39,12 @@ freeStyleJob('link-project') {
                     scm("* * * * *")
                 }
                 scm {
-                    github("$GITHUB_NAME")
+                    git {
+                        remote {
+                            github("$GITHUB_NAME", "ssh")
+                            credentials('jenkins-ssh-key')
+                        }
+                    }
                 }
                 wrappers {
                     preBuildCleanup()
