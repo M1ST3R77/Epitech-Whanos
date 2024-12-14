@@ -1,6 +1,4 @@
-# Guide to setting up a Kubernetes cluster with Ansible
-
-## Explanation Guide
+# Explanation Guide
 
 Checkout different documentations :
 - [Ansible](/docs/ansible.md)
@@ -8,7 +6,10 @@ Checkout different documentations :
 - [Jenkins](/docs/jenkins.md)
 - [Kubernetes](/docs/kubernetes.md)
 
-## Installation
+
+# Installation & Deployment
+
+## Guide to setting up a Kubernetes cluster with Ansible
 
 ### Step 1: Install Ansible
 Let's start by installing ansible on your machine.
@@ -78,4 +79,4 @@ This command will install everything needed to create a Kubernetes cluster with 
     kubectl get nodes
     ```
 
-The guide is now complete, and you have successfully set up a kubernetes cluster.
+This guide is now complete, and you have successfully set up a kubernetes cluster.
