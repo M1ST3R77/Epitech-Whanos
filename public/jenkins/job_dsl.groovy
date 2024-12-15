@@ -15,7 +15,7 @@ folder('Projects') {}
 languages.each{ language ->
     freeStyleJob("Whanos base images/whanos-$language") {
         steps {
-            shell("docker build /images/$language -f /images/$language/Dockerfile.base -t whanos-$language")
+            shell("docker build /var/jenkins_home/whanos/images/$language -f /var/jenkins_home/whanos/images/$language/Dockerfile.base -t whanos-$language")
         }
     }
 }

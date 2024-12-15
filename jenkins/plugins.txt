@@ -8,3 +8,6 @@ script-security:latest
 structs:latest
 role-strategy:latest
 ws-cleanup:latest
+git:latest
+kubernetes:latest
+workflow-aggregator:latest

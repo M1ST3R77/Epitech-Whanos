@@ -1,0 +1,30 @@
+FROM gcc:13.2 as builder
+
+SHELL ["/bin/bash", "-c"]
+
+WORKDIR /app
+
+COPY . /app
+
+RUN apt update && apt install -y cmake
+
+RUN mkdir ./build && cd ./build && cmake .. && cmake --build .
+
+RUN cp /app/build/compiled-app .
+
+RUN rm -rf app CMakeLists.txt build
+
+
+FROM alpine:latest
+
+RUN apk add --no-cache bash
+
+SHELL ["/bin/bash", "-c"]
+
+RUN apk add --no-cache libc6-compat libstdc++ libgcc
+
+WORKDIR /app
+
+COPY --from=builder /app /app
+
+CMD ["./compiled-app"]

@@ -36,6 +36,9 @@
 
 - name: Copy scripts folder into master
   copy:
-    src: ../../../../scripts/
+    src: ../../../../public/scripts/
     dest: /scripts/
     mode: '0755'
+
+- name: Run setup kube script
+  shell: "/scripts/deployment/scripts/setup.sh"
