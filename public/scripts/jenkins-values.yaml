@@ -2,6 +2,7 @@ namespace: deployment
 namespaceOverride: deployment
 agent:
   namespace: deployment
+  runAsUser: root
 
 controller:
   serviceType: NodePort

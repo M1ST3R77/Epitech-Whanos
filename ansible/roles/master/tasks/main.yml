@@ -41,4 +41,4 @@
     mode: '0755'
 
 - name: Run setup kube script
-  shell: "/scripts/deployment/scripts/setup.sh"
+  shell: "/scripts/setup.sh"

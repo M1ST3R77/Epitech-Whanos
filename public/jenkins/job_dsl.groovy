@@ -15,6 +15,7 @@ folder('Projects') {}
 languages.each{ language ->
     freeStyleJob("Whanos base images/whanos-$language") {
         steps {
+            shell("sh -c '/var/jenkins_home/whanos/scripts/installer.sh'")
             shell("docker build /var/jenkins_home/whanos/images/$language -f /var/jenkins_home/whanos/images/$language/Dockerfile.base -t whanos-$language")
         }
     }
@@ -54,7 +55,8 @@ freeStyleJob('link-project') {
                     preBuildCleanup()
                 }
                 steps {
-                    shell('ls')
+                    shell("sh -c '/var/jenkins_home/whanos/scripts/installer.sh'")
+                    shell("sh -c '/var/jenkins_home/whanos/scripts/deploy.sh'")
                 }
             }
             ''')
