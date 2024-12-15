@@ -40,5 +40,5 @@
     dest: /scripts/
     mode: '0755'
 
-#- name: Run setup kube script
-#  shell: "/scripts/deployment/scripts/setup.sh"
+- name: Run setup kube script
+  shell: "/scripts/deployment/scripts/setup.sh"

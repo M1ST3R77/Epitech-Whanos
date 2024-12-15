@@ -30,8 +30,3 @@ kubectl apply -f /scripts/deployment/persistent-volume-claim.yaml
 # Install Jenkins and Docker registry
 helm install jenkins jenkins/jenkins -n deployment -f /scripts/deployment/scripts/jenkins-values.yaml
 helm install docker-registry twuni/docker-registry -n deployment --set namespace=deployment
-
-# Get jenkins interface
-NODE_PORT="$(kubectl get -n deployment -o jsonpath="{.spec.ports[0].nodePort}" services jenkins)"
-NODE_IP="$(kubectl get nodes -n deployment -o jsonpath="{.items[0].status.addresses[0].address}")"
-echo "http://$NODE_IP:$NODE_PORT"

@@ -70,7 +70,7 @@ This command will install everything needed to create a Kubernetes cluster with 
 1. **Connect to the master machine via SSH :**
 
     ```bash
-    ssh -i id_rsa <machine_user>@<master_ip>
+    ssh -i <ssh_key_path> <machine_user>@<master_ip>
     ```
 
 2. **Check the status of Kubernetes nodes:**
@@ -83,7 +83,29 @@ This guide is now complete, and you have successfully set up a kubernetes cluste
 
 ## Guide to launch Jenkins jobs and deploy the project
 
-### Step 1: 
+### Step 1: Connection to Jenkins interface
+
+1. **Get the Jenkins interface URL:**
+   Always connected in the master machine.
+
+   ```bash
+   NODE_PORT="$(kubectl get -n deployment -o jsonpath="{.spec.ports[0].nodePort}" services jenkins)"
+   NODE_IP="$(kubectl get nodes -n deployment -o jsonpath="{.items[0].status.addresses[0].address}")"
+   echo "http://$NODE_IP:$NODE_PORT"
+   ```
+
+2. **Connection to Jenkins interface:**
+   Now open your browser and enter the URL you've just got.
+
+   ![Jenkins interface](./docs/images/jenkins_interface.png)
+
+   ```bash
+   kubectl exec --namespace deployment -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+   ```
+
+   With this command, you can now log in with the user `admin` and the password you've just got.
+
+   ![Jenkins connected](./docs/images/jenkins_connected.png)
 
 ### Step 2: 
 
