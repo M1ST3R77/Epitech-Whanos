@@ -12,4 +12,6 @@ RUN jenkins-plugin-cli --plugins              \
     script-security                           \
     structs                                   \
     role-strategy                             \
-    ws-cleanup
+    ws-cleanup                                \
+    docker-plugin                             \
+    kubernetes-cli
