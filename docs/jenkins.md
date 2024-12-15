@@ -28,6 +28,8 @@ The Ansible architecture consists of the following components :
 ### Role **Admin**
 
 Jenkins only have one role which is Admin. But Admins can create more roles.
+User admin is created in the 'securityRealm' and the administer permissions are given in the 'authorizationStrategy'
+
 
 ## Folders
 
@@ -44,11 +46,11 @@ It will contains all the projects link to whanos by the jobs.
 
 ### Whanos base images build jobs
 
-The first job builds a base image corresponding at the language selected
+The first job builds a base image corresponding at the language selected. It builds it in the folder 'Whanos base images' previously created.
 
 ### Build all base images
 
-This job will trigger all the language base images jobs created
+This job will trigger all the language base images jobs created by the previous job. Sure it also build them in the folder 'Whanos base images'.
 
 ### Link project
 
@@ -62,3 +64,5 @@ When a change is detected on the default branch:
 - containerizes the respository’s application according to the specifications described in
   the Whanos images specifications section
 - if applicable, deploys the application into a Kubernetes cluster
+
+It put all of the projects in the folder 'Projects' created earlier
