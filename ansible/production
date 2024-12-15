@@ -1,0 +1,9 @@
+[all:vars]
+ansible_ssh_extra_args="-o StrictHostKeyChecking=no"
+ansible_python_interpreter=/usr/bin/python3
+
+[master]
+master_host ansible_host="{{ master_ip }}" ansible_user="{{ ansible_user_master }}" ansible_ssh_private_key_file="{{ private_key_path_master }}"
+
+[worker]
+worker_host ansible_host="{{ worker_ip }}" ansible_user="{{ ansible_user_worker }}" ansible_ssh_private_key_file="{{ private_key_path_worker }}"

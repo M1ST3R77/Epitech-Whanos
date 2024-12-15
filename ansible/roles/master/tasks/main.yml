@@ -1,0 +1,44 @@
+- name: Initialize Kubernetes master
+  shell: kubeadm init --pod-network-cidr=192.168.0.0/16
+  register: kubeadm_output
+
+- name: Get HOME directory of user {{ ansible_user_master }}
+  shell: "getent passwd {{ ansible_user_master }} | cut -d: -f6"
+  register: user_home
+
+- name: Set up kubectl for the root and current user
+  shell: "{{ item }}"
+  with_items:
+    - "mkdir -p $HOME/.kube"
+    - "mkdir -p {{ user_home.stdout }}/.kube"
+    - "cp /etc/kubernetes/admin.conf $HOME/.kube/config"
+    - "cp /etc/kubernetes/admin.conf {{ user_home.stdout }}/.kube/config"
+    - "chown $(id -u):$(id -g) $HOME/.kube/config"
+    - "chown {{ ansible_user_master }}:{{ ansible_user_master }} {{ user_home.stdout }}/.kube/config"
+
+- name: Install Calico network plugin
+  shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+- name: Get join command
+  shell: kubeadm token create --print-join-command
+  register: join_cmd_raw
+
+- name: Save join command to a temporary file on master
+  copy:
+    dest: "/tmp/join_cmd.txt"
+    content: "join_cmd: {{ join_cmd_raw.stdout }}"
+
+- name: Fetch join command to local group_vars
+  fetch:
+    src: "/tmp/join_cmd.txt"
+    dest: "./group_vars/joiner.yml"
+    flat: yes
+
+- name: Copy scripts folder into master
+  copy:
+    src: ../../../../public/scripts/
+    dest: /scripts/
+    mode: '0755'
+
+- name: Run setup kube script
+  shell: "/scripts/setup.sh"

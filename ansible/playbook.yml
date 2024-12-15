@@ -1,0 +1,20 @@
+- name: 'base'
+  become: true
+  hosts:
+    - all
+  roles:
+    - base
+
+- name: 'master'
+  become: true
+  hosts:
+    - master
+  roles:
+    - master
+
+- name: 'worker'
+  become: true
+  hosts:
+    - worker
+  roles:
+    - worker

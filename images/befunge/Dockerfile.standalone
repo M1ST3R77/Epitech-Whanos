@@ -1,0 +1,31 @@
+FROM gcc:13.2 as builder
+
+SHELL ["/bin/bash", "-c"]
+
+WORKDIR /app
+
+COPY . /app
+
+RUN git clone https://github.com/catseye/Befunge-93.git
+
+RUN make -C /app/Befunge-93
+
+RUN cp /app/Befunge-93/bin/bef .
+
+RUN rm -rf /app/Befunge-93/
+
+
+FROM alpine:latest
+
+RUN apk add --no-cache bash
+
+SHELL ["/bin/bash", "-c"]
+
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+COPY --from=builder /app /app
+
+CMD ["./bef", "app/main.bf"]
+

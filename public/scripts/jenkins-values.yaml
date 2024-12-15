@@ -1,0 +1,43 @@
+namespace: deployment
+namespaceOverride: deployment
+agent:
+  namespace: deployment
+  runAsUser: root
+
+controller:
+  serviceType: NodePort
+  nodePort: 30000
+  image:
+    repository: "exeloo/whanos-jenkins"
+    tagLabel: ~
+    tag: latest
+    installPlugins: false
+  installPlugins: false
+  JCasC:
+    securityRealm: |-
+      local:
+        allowsSignup: false
+        enableCaptcha: false
+        users:
+        - id: "${chart-admin-username}"
+          name: "Admin"
+          password: "${chart-admin-password}"
+    authorizationStrategy: |-
+      roleBased:
+        roles:
+          global:
+            - name: Admin
+              permissions:
+                - Overall/Administer
+                - Overall/Read
+              entries:
+                - user: admin
+    configScripts:
+      seed-jobs: |
+        security:
+          globalJobDslSecurityConfiguration:
+            useScriptSecurity: false
+        jobs:
+         - file: "/var/jenkins_home/whanos/job_dsl.groovy"
+persistence:
+  existingClaim: whanos-claim

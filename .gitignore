@@ -1,2 +1,5 @@
-.vscode
-.idea
+.vscode/
+.idea/
+
+/ansible/group_vars/*
+!/ansible/group_vars/.gitkeep
