@@ -41,9 +41,11 @@ freeStyleJob('link-project') {
                 scm {
                     git {
                         remote {
-                            github("$GITHUB_NAME", "ssh")
+                            name('origin')
+                            url("$GITHUB_NAME")
                             credentials('jenkins-ssh-key')
                         }
+                        branch('main')
                     }
                 }
                 wrappers {
