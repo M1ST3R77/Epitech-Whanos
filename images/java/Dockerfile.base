@@ -6,12 +6,12 @@ ONBUILD WORKDIR /app
 
 ONBUILD COPY . /app
 
-ONBUILD RUN mvn -f /app/pom.xml compile
+ONBUILD RUN mvn -f app/pom.xml compile
 
-ONBUILD RUN mvn -f /app/pom.xml package
+ONBUILD RUN mvn -f app/pom.xml package
 
-ONBUILD RUN cp /app/target/app.jar .
+ONBUILD RUN cp app/target/app.jar .
 
-ONBUILD RUN rm -rf /app
+ONBUILD RUN rm -rf app/
 
 ONBUILD CMD ["java", "-jar", "app.jar"]

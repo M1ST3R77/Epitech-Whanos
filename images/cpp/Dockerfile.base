@@ -1,0 +1,17 @@
+FROM gcc:13.2
+
+SHELL ["/bin/bash", "-c"]
+
+ONBUILD WORKDIR /app
+
+ONBUILD COPY . /app
+
+ONBUILD RUN apt update && apt install -y cmake
+
+ONBUILD RUN mkdir ./build && cd ./build && cmake .. && cmake --build .
+
+ONBUILD RUN cp /app/build/compiled-app .
+
+ONBUILD RUN rm -rf app CMakeLists.txt build
+
+ONBUILD CMD ["./compiled-app"]

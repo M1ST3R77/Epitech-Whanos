@@ -8,6 +8,6 @@ ONBUILD COPY . /app
 
 ONBUILD RUN make
 
-ONBUILD RUN rm -rf Makefile /app
+ONBUILD RUN rm -rf Makefile app
 
 ONBUILD CMD ["./compiled-app"]

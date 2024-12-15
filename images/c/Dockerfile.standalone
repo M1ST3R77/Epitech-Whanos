@@ -8,7 +8,7 @@ COPY . /app
 
 RUN make
 
-RUN rm -rf Makefile /app
+RUN rm -rf Makefile app
 
 
 FROM alpine:latest

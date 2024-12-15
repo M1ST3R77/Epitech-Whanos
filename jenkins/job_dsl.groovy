@@ -3,6 +3,8 @@ def languages = [
     "python",
     "java",
     "javascript",
+    "cpp",
+    "go",
     "befunge"
 ]
 
