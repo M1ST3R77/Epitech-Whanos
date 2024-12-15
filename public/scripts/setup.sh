@@ -21,12 +21,12 @@ kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storagec
 
 ## Setup nfs
 ### Install nfs
-helm install nfs-server stable/nfs-server-provisioner -n deployment --set persistence.enabled=true,persistence.storageClass=do-block-storage
+helm install nfs-server stable/nfs-server-provisioner -n deployment
 
 ### Create volumes
-kubectl apply -f /scripts/deployment/persistent-volume.yaml
-kubectl apply -f /scripts/deployment/persistent-volume-claim.yaml
+kubectl apply -f /scripts/persistent-volume.yaml
+kubectl apply -f /scripts/persistent-volume-claim.yaml
 
 # Install Jenkins and Docker registry
-helm install jenkins jenkins/jenkins -n deployment -f /scripts/deployment/scripts/jenkins-values.yaml
+helm install jenkins jenkins/jenkins -n deployment -f /scripts/jenkins-values.yaml
 helm install docker-registry twuni/docker-registry -n deployment --set namespace=deployment
