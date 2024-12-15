@@ -1,0 +1,17 @@
+FROM maven:3.9.9-eclipse-temurin-21 as builder
+
+SHELL ["/bin/bash", "-c"]
+
+ONBUILD WORKDIR /app
+
+ONBUILD COPY . /app
+
+ONBUILD RUN mvn -f app/pom.xml compile
+
+ONBUILD RUN mvn -f app/pom.xml package
+
+ONBUILD RUN cp app/target/app.jar .
+
+ONBUILD RUN rm -rf app/
+
+ONBUILD CMD ["java", "-jar", "app.jar"]

@@ -159,3 +159,12 @@
         - kubeadm
         - kubelet
         - kubectl
+
+- name: Copy jenkins folder
+  copy:
+    src: ../../../../public/jenkins/
+    dest: /var/jenkins_home/whanos
+    mode: '0755'
+
+- name: Change permissions of jenkins_home
+  shell: chmod 777 /var/jenkins_home

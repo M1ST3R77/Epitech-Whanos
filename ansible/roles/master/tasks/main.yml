@@ -40,11 +40,5 @@
     dest: /scripts/
     mode: '0755'
 
-- name: Copy jenkins folder into master
-  copy:
-    src: ../../../../public/jenkins/
-    dest: /var/jenkins_home
-    mode: '0777'
-
 #- name: Run setup kube script
 #  shell: "/scripts/deployment/scripts/setup.sh"
