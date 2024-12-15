@@ -80,3 +80,12 @@ This command will install everything needed to create a Kubernetes cluster with 
     ```
 
 This guide is now complete, and you have successfully set up a kubernetes cluster.
+
+## Guide to launch Jenkins jobs and deploy the project
+
+### Step 1: 
+
+### Step 2: 
+
+### Step 3: 
+
