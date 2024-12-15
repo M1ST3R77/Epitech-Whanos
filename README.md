@@ -107,7 +107,24 @@ This guide is now complete, and you have successfully set up a kubernetes cluste
 
    ![Jenkins connected](./docs/images/jenkins_connected.png)
 
-### Step 2: 
+### Step 2: Build all base images
 
-### Step 3: 
+To build all languages images
+- click on `Whanos base images` folder
+- click on `Build all base images` job
+- click on `Launch build` on the left of the screen
+
+![Jenkins WBI](./docs/images/JenkinsWBI.png)
+
+### Step 3: Link project
+
+To link a project to Whanos
+- click on `link-project` job
+- click on `build with parameters` on the left of the screen
+- specify the GitHub repository name and the project name displayed
+- click on green `Build` button
+
+It will check for changes in your repository
+
+![Jenkins link project](./docs/images/JenkinsLP.png)
 
