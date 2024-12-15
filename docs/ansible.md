@@ -80,6 +80,9 @@ The **base** role tasks are performed on all machines. They include updating and
     - **Add /usr/local/bin to PATH** : Add executable path to `PATH`.
     - **Install kubeadm, kubelet and kubectl** : Download the three Kubernetes tools.
 
+- **jenkins files in VMs** :
+    - **Copy jenkins folder** : Copies the `jenkins` folder to both virtual machines.
+    - **Change permissions of jenkins_home** : Change jenkins_home permissions to be accessible and modifiable by all.
 
 ### Role **Master**
 
@@ -98,6 +101,7 @@ The **master** role is intended for machines that will be master nodes in the Ku
 
 - **Scripts configuration and deployment** :
     - **Copy scripts folder into master** : Copy the necessary scripts to the master machine.
+    - **Run setup kube script** : Runs script to install and configure **`jenkins`** and **`docker registry`**.
 
 
 ### Role **Worker**
