@@ -159,3 +159,56 @@ Here are the steps for building the Docker image for Python :
 2. Copy the contents of the repository into the `/app` folder of the image.
 3. Run `pip` to install the dependencies.
 4. Run `python` to launch the project.
+
+### C++
+
+C++ is a high-performance, object-oriented, compiled programming language that extends the functionality of C with modern concepts such as classes, templates and dynamic memory management.
+
+#### **Requirements**
+- Use only official Docker images.
+- The project must contain a `CMakeLists.txt` file at the root.
+- Compilation is done with `cmake`.
+- The executable must be called `compiled-app`.
+- The execution must be done with `./compiled-app`.
+- The generated Docker image must be named **`whanos-cpp`**.
+
+#### **Dockerfile contents**
+Here are the steps for building the Docker image for C++ :
+
+1. Using the official **gcc** image to start a bash environment.
+2. Copy the contents of the repository into the `/app` folder of the image.
+3. Install cmake on the image builder.
+4. Run the **CMakeLists.txt** with `cmake --build` to compile and generate the executable.
+5. Removes all unnecessary content from the image and copy the executable to the root of the image builder.
+6. Switch to a new image based on **Alpine**, install **bash**, and add the **libc6-compat**, **libstdc++** and **libgcc** library to support the executable.
+7. Copy the executable from the gcc image to the `/app` folder.
+8. Run the executable `compiled-app`.
+
+#### **Note**
+Unlike the Standalone image, the Base image does not isolate the installation of dependencies in a second image. All steps are executed in a single image.
+
+### Go
+
+Go is a simple, compiled programming language designed by Google to facilitate the development of high-performance, scalable software, with automatic memory management and integrated tools.
+
+#### **Requirements**
+- Use only official Docker images.
+- The project must contain a `main.go` file in an `app` folder at the root.
+- Compilation is done with `go`.
+- The executable must be called `compiled-app`.
+- The execution must be done with `./compiled-app`.
+- The generated Docker image must be named **`whanos-go`**.
+
+#### **Dockerfile contents**
+Here are the steps for building the Docker image for Go :
+
+1. Using the official **golang** image to start a bash environment.
+2. Copy the contents of the repository into the `/app` folder of the image.
+3. Run `go build` to compile and generate the executable.
+4. Removes all unnecessary content from the image.
+5. Switch to a new image based on **Alpine**, install **bash**.
+6. Copy the executable from the gcc image to the `/app` folder.
+7. Run the executable `compiled-app`.
+
+#### **Note**
+Unlike the Standalone image, the Base image does not isolate the installation of dependencies in a second image. All steps are executed in a single image.
