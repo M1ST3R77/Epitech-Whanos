@@ -128,3 +128,12 @@ It will check for changes in your repository
 
 ![Jenkins link project](./docs/images/JenkinsLP.png)
 
+### Step 4: Launch the job created by link-project
+
+After the project has been linked to Whanos you have to launch th job created by link-project
+
+- in the folder 'Project'
+- click on the `ProjectName`
+- click on the build on the left of the screen
+
+It will activate the `ProjectName` job
