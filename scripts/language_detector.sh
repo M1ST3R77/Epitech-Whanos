@@ -5,6 +5,11 @@ if [[ -f Makefile ]]; then
     exit 0
 fi
 
+if [[ -f CMakeLists.txt ]]; then
+    echo "cpp"
+    exit 0
+fi
+
 if [[ -f app/pom.xml ]]; then
     echo "java"
     exit 0
@@ -22,6 +27,11 @@ fi
 
 if [[ -f app/main.bf ]]; then
     echo "befunge"
+    exit 0
+fi
+
+if [[ -f app/main.go ]]; then
+    echo "go"
     exit 0
 fi
 

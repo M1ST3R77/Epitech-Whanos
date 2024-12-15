@@ -6,18 +6,16 @@ WORKDIR /app
 
 COPY . /app
 
-RUN mvn -f /app/pom.xml compile
+RUN mvn -f app/pom.xml compile
 
-RUN mvn -f /app/pom.xml package
+RUN mvn -f app/pom.xml package
 
-RUN cp /app/target/app.jar .
+RUN cp app/target/app.jar .
 
-RUN rm -rf /app
+RUN rm -rf app/
 
 
 FROM openjdk:21-jdk
-
-RUN apk add --no-cache bash
 
 SHELL ["/bin/bash", "-c"]
 

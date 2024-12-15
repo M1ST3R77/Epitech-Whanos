@@ -14,4 +14,4 @@ ONBUILD RUN cp /app/Befunge-93/bin/bef .
 
 ONBUILD RUN rm -rf /app/Befunge-93/
 
-ONBUILD CMD ["./bef", "/app/main.bf"]
+ONBUILD CMD ["./bef", "app/main.bf"]
