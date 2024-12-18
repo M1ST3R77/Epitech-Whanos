@@ -29,4 +29,4 @@ kubectl apply -f /scripts/persistent-volume-claim.yaml
 
 # Install Jenkins and Docker registry
 helm install jenkins jenkins/jenkins -n deployment -f /scripts/jenkins-values.yaml
-helm install docker-registry twuni/docker-registry -n deployment --set namespace=deployment
+helm install docker-registry twuni/docker-registry -n deployment --set namespace=deployment,service.type=NodePort,service.nodePort=30001
