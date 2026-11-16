@@ -1,3 +1,53 @@
+# 🐳 Whanos
+
+**A DevOps platform that takes application repositories and deploys them as containers on a Kubernetes cluster.**
+
+Whanos combines Ansible, Kubernetes, Helm, Docker and Jenkins. Ansible builds the cluster, Jenkins watches the linked repositories, Docker turns them into images, and Helm deploys them on Kubernetes.
+
+> Built in 2024 by a team of Epitech Paris students, as part of the DevOps curriculum.
+
+## ✨ Features
+
+- **Infrastructure in one playbook**: Ansible sets up a two-node Kubernetes cluster (kubeadm + Calico), then installs Jenkins and a private Docker registry with Helm
+- **Images for seven languages**: a *base* and a *standalone* Dockerfile for C, C++, Java, JavaScript, Python, Go and Befunge, all built by a single Jenkins job
+- **Language detection and image build scripts**: the language is guessed from the repository (`Makefile`, `CMakeLists.txt`, `pom.xml`, `package.json`, `requirements.txt`…), and the repository's own `Dockerfile` is used when it has one
+- **Repository linking**: a `link-project` job creates a dedicated Jenkins job for any repository, which checks its `main` branch every minute
+- **Helm deployment**: each project is deployed on Kubernetes from the `whanos.yml` at its root (replicas, resources, ports)
+- **Jenkins as code**: users, permissions and jobs are defined in files (Configuration as Code + Job DSL), nothing is set up by hand
+
+## 🧭 How it works
+
+```
+ ansible-playbook ──▶ Kubernetes cluster (master + worker) ──▶ Jenkins + Docker registry (Helm)
+                                                                      │
+ link-project job ──▶ "Projects/<name>" job, polling the repository ◀─┘
+                                     │
+                                     ▼
+                  whanos.yml ──▶ helm upgrade ──▶ application running on Kubernetes
+```
+
+Example `whanos.yml`:
+
+```yaml
+deployment:
+  replicas: 3
+  resources:
+    limits:
+      memory: "128M"
+    requests:
+      memory: "64M"
+  ports:
+    - 3000
+```
+
+Sample applications for every supported language are in [`examples/`](examples).
+
+## 🛠️ Tech stack
+
+Kubernetes · Helm · Docker · Jenkins (Configuration as Code, Job DSL) · Ansible · Bash
+
+---
+
 # Explanation Guide
 
 Checkout different documentations :
